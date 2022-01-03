@@ -18,5 +18,4 @@ public class Agregação {
 	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
 	
 	
-	
 }

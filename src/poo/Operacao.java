@@ -28,7 +28,7 @@ public class Operacao {
 	
 	void lerFicheiro(){
 		try{
-			FileReader ficheiro = new FileReader(System.getProperty("user.dir")+"/" + nomeFicheiro);
+			FileReader ficheiro = new FileReader(System.getProperty("user.dir")+"/src/" + nomeFicheiro);
 			Scanner myReader = new Scanner(ficheiro);
 			
 			String[] colunas = myReader.nextLine().split(",");
@@ -55,7 +55,7 @@ public class Operacao {
 			//System.out.print(tabela.get(1));
 	
 			//System.out.println(tabela.get(1).get("IsActiveMember").equals(tabela.get(0).get("IsActiveMember")));
-			Agregação a = new Agregação(conteudoColuna[1],tabela);
+			Agregação a = new Agregação(conteudoColuna[0],tabela);
 			a.distinctCount();
 			
 		}catch(FileNotFoundException e){

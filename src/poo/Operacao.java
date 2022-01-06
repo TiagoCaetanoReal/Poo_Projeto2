@@ -50,13 +50,14 @@ public class Operacao {
 					//System.out.println(i);
 				}
 				tabela.add(data);
-				//break;
 			}
 			//System.out.print(tabela.get(1));
 	
 			//System.out.println(tabela.get(1).get("IsActiveMember").equals(tabela.get(0).get("IsActiveMember")));
-			Agregação a = new Agregação(conteudoColuna[0],tabela);
-			a.distinctCount();
+			DistinctCount a = new DistinctCount(conteudoColuna[2],tabela);
+			//int d = a.distinctCount();
+			
+			a.getContagemDistinta();
 			
 		}catch(FileNotFoundException e){
 			e.printStackTrace();

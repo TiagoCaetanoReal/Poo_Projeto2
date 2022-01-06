@@ -17,26 +17,47 @@ public class Agregação {
 	ArrayList<HashMap <String , String>> getQueryTable() { return this.queryTable;}
 	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
 	
-	void distinctCount(){
-		HashMap <String , Integer> diferenciado = new HashMap<>();
+	int distinctCount(){
+		Collection<String> tabela = new ArrayList<String>();
+		Set<String> distinct = new HashSet<String>();
 		
-		for(int i =0 ; i < getQueryTable().size();i++) {
-			if(diferenciado.containsKey(getQueryTable().get(i).get(coluna)) == false){
-				diferenciado.put(getQueryTable().get(i).get(coluna), 1);
-			}
-			else{
-				diferenciado.put(getQueryTable().get(i).get(coluna), diferenciado.get(getQueryTable().get(i).get(coluna))+ 1);	
-			}
-			
+		for(int i = 0 ; i < getQueryTable().size();i++) {
+			tabela.add(getQueryTable().get(i).get(coluna));
 		}
 		
-		/*for (HashMap.Entry<String, Integer> entry : diferenciado.entrySet()) {
-		        String k = entry.getKey();
-		        int v = entry.getValue();
-		        if(entry.getKey().equals("15584532"))
-		        	System.out.println("Key: " + k + ", Value: " + v);
-		}*/
-		System.out.println(diferenciado);
+		for(String tabelinha: tabela) {
+			if(!distinct.add(tabelinha));
+		}
 		
+		return distinct.size();
+		}
+}	
+
+
+
+/*HashMap <String , Integer> diferenciado = new HashMap<>();
+
+for(int i = 0 ; i < getQueryTable().size();i++) {
+	if(diferenciado.containsKey(getQueryTable().get(i).get(coluna)) == false){
+		diferenciado.put(getQueryTable().get(i).get(coluna), 1);
+	}
+	else{
+		diferenciado.put(getQueryTable().get(i).get(coluna), diferenciado.get(getQueryTable().get(i).get(coluna)) + 1);	
 	}
 }
+
+for(int i = 0 ; i < getQueryTable().size(); i++){
+	String j = getQueryTable().get(i).get(coluna);
+	
+	if(diferenciado.get(j) > 1)
+		diferenciado.remove(j);
+}
+
+for (HashMap.Entry<String, Integer> entry : diferenciado.entrySet()) {
+        String k = entry.getKey();
+        int v = entry.getValue();
+        System.out.println("Key: " + k + ", Value: " + v);
+        //System.out.println(diferenciado);
+}*/
+
+

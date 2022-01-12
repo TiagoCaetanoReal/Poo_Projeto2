@@ -1,10 +1,6 @@
 package poo;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class DistinctCount {
 	String coluna;
@@ -15,7 +11,7 @@ public class DistinctCount {
 		this.coluna = coluna;
 		this.queryTable = querryTable;
 		distinctCount();
-		System.out.println(contagemDistinta);
+		//System.out.println(contagemDistinta);
 	}
 	
 	String getColuna() { return this.coluna;}

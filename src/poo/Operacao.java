@@ -52,12 +52,16 @@ public class Operacao {
 				tabela.add(data);
 			}
 			//System.out.print(tabela.get(1));
-	
 			//System.out.println(tabela.get(1).get("IsActiveMember").equals(tabela.get(0).get("IsActiveMember")));
-			DistinctCount a = new DistinctCount(conteudoColuna[2],tabela);
-			//int d = a.distinctCount();
 			
-			a.getContagemDistinta();
+			//DistinctCount a = new DistinctCount(conteudoColuna[4],tabela);
+			//int d = a.getContagemDistinta();
+			//System.out.print(d);
+			
+			
+			//CountRows a = new CountRows(tabela);
+			//int d = a.getNumbLines();
+			//System.out.print(d);
 			
 		}catch(FileNotFoundException e){
 			e.printStackTrace();

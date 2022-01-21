@@ -6,6 +6,7 @@ import java.util.*;
 public class Operacao {
 	String nomeFicheiro;
 	ArrayList<HashMap <String , String>> tabela = new ArrayList<>();
+	ArrayList<HashMap <String , String>> tabelaModificada = new ArrayList<>();
 	String[] conteudoColuna;
 	Map<String, String> dataTypeDictionary = new HashMap<String, String>();
 	String query;
@@ -14,6 +15,7 @@ public class Operacao {
 		this.nomeFicheiro = nomeFicheiro;
 		lerFicheiro();
 		variableType();
+		operacoes();
 	}
 	
 	String getNomeFicheiro() { return this.nomeFicheiro;}
@@ -27,6 +29,9 @@ public class Operacao {
 	
 	String getQuery() { return this.query;}
 	private void setQuery(String query) { this.query=query;}
+	
+	ArrayList<HashMap <String , String>> getTabelaModificada() { return this.tabelaModificada;}
+	private void setTabelaModificada(ArrayList<HashMap <String , String>> tabelaModificada) { this.tabelaModificada=tabelaModificada;}
 	
 	void lerFicheiro(){
 		try{
@@ -73,26 +78,16 @@ public class Operacao {
 			 for(int i = 0; i < getTabela().size(); i++){
 				String x = getTabela().get(i).get(conteudoColuna[b]);
 				
-		    	try {
+				try {
 			        int j = Integer.parseInt(x);
-			        //System.out.println("It's an integer: " + j);
-			       // System.out.println(conteudoColuna[b]);
-			       // dataType.put(conteudoColuna[b], "INT");
-			        
 			        tempDictionary.put("INT", tempDictionary.get("INT") + 1);
 			        
 		    	} catch (NumberFormatException e) {
 			        try {
 			            double d = Double.parseDouble(x);
-			            //System.out.println("It's a double: " + d);
-			           // dataType.put(conteudoColuna[b], "DOUBLE");
-			            
 			            tempDictionary.put("DOUBLE", tempDictionary.get("DOUBLE") + 1);
 			            
 			        } catch (NumberFormatException e2) {
-			            //System.out.println("It's a String: " + x);
-			          // dataType.put(conteudoColuna[b], "STRING");
-			        	
 			        	tempDictionary.put("STRING", tempDictionary.get("STRING") + 1);
 			        }
 		    	}
@@ -101,27 +96,29 @@ public class Operacao {
 			 //System.out.println(temp);
 			
 			if(tempDictionary.get("INT") > tempDictionary.get("DOUBLE") && tempDictionary.get("INT") > tempDictionary.get("STRING")) {		
-				dataTypeDictionary.put(conteudoColuna[b], "INT");
-				System.out.println(conteudoColuna[b] + " " + dataTypeDictionary.get(conteudoColuna[b]));
+				int g = 0;
+				
+				for(int a = 0; a < getTabela().size(); a++){
+					String x = getTabela().get(a).get(conteudoColuna[b]);
+					int j = Integer.parseInt(x);
+					
+					 if (j == 1 || j == 0)
+				            g++;
+				    }
+				
+				if(g == getTabela().size())
+					dataTypeDictionary.put(conteudoColuna[b], "BOOLEAN");
+				
+				else
+					dataTypeDictionary.put(conteudoColuna[b], "INT");
 			}
 			else if(tempDictionary.get("DOUBLE") > tempDictionary.get("INT") && tempDictionary.get("DOUBLE") > tempDictionary.get("STRING")) {
 				dataTypeDictionary.put(conteudoColuna[b], "DOUBLE");
-				System.out.println(conteudoColuna[b] + " " + dataTypeDictionary.get(conteudoColuna[b]));
-				
 			}
 			else {
 				dataTypeDictionary.put(conteudoColuna[b], "STRING");
-				System.out.println(conteudoColuna[b] + " " + dataTypeDictionary.get(conteudoColuna[b]));
-				
 			}
 	    }
-		//System.out.println(dataType.get("Geography"));
-	    
-	    /*
-	     * https://stackoverflow.com/questions/13543457/how-do-you-create-a-dictionary-in-java
-	     * https://codereview.stackexchange.com/questions/159457/determine-if-an-input-is-an-integer-a-double-or-a-string
-	     * https://stackoverflow.com/questions/12361492/how-to-determine-the-primitive-type-of-a-primitive-variable
-	     */
 	}
 	 
 	 void operacoes(){
@@ -132,12 +129,29 @@ public class Operacao {
 			//int d = a.getContagemDistinta();
 			//System.out.print(d);
 			
-			//Sum a = new Sum(conteudoColuna[4],tabela);
-			//int d = a.getResultadoSoma();
-			//System.out.print(d);
+			/*Sum a = new Sum(conteudoColuna[6],tabela, dataTypeDictionary);
+			double d = a.getResultadoSoma();
+			System.out.println(String.format("%.1f", d));*/
+			
+		 	/*Average h = new Average(conteudoColuna[7],tabela, dataTypeDictionary);
+			int b = h.getAverageResult();
+			System.out.println(b);*/
 			
 			//CountRows a = new CountRows(tabela);
 			//int d = a.getNumbLines();
 			//System.out.print(d);
+		 
+		  	/*All a = new All(tabela);
+		  	tabela = a.getQueryTable();
+			System.out.print(tabela.get(0));*/
+			
+		 	String[] array = {"IsActiveMember", "==", "1", "&&", "Gender", "==", "Female"};
+			Filter f = new Filter(tabela, array);
+			setTabelaModificada(f.resultingTable);
+	
+			for(int i = 0 ; i < getTabelaModificada().size();i++) {
+				System.out.println(getTabelaModificada().get(i));
+			}
 	 }
 }
+

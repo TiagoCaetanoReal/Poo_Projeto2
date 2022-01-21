@@ -2,14 +2,16 @@ package poo;
 
 import java.util.*;
 
-public class Sum {
-	String coluna;
+public class Sum<T extends Number>{
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
-	int resultadoSoma;
+	Map<String, String> dictionary = new HashMap<String, String>();
+	double resultadoSoma;
+	String coluna;
 	
-	Sum(String coluna, ArrayList<HashMap <String , String>> querryTable){
+	Sum(String coluna, ArrayList<HashMap <String , String>> querryTable, Map<String, String> dictionary){
 		this.coluna = coluna;
 		this.queryTable = querryTable;
+		this.dictionary = dictionary;
 		sumValues();
 	}
 	
@@ -19,15 +21,19 @@ public class Sum {
 	ArrayList<HashMap <String , String>> getQueryTable() { return this.queryTable;}
 	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
 	
-	int getResultadoSoma() { return this.resultadoSoma;}
-	private void setResultadoSoma(int resultadoSoma) { this.resultadoSoma = resultadoSoma;}
+	double getResultadoSoma() { return this.resultadoSoma;}
+	private void setResultadoSoma(double resultadoSoma) { this.resultadoSoma = resultadoSoma;}
 	
-	void sumValues(){
-		
-		for(int i = 0 ; i < getQueryTable().size();i++) {
-			//System.out.println(Integer.parseInt(getQueryTable().get(i).get(coluna)));
-			setResultadoSoma(getResultadoSoma()+Integer.parseInt(getQueryTable().get(i).get(coluna)));
+	Map<String, String> getDictionary() { return this.dictionary;}
+	private void setDictionary(Map<String, String> dictionary) { this.dictionary=dictionary;}
+	
+	void sumValues() {
+		if(getDictionary().get(coluna) == "INT" || getDictionary().get(coluna) == "DOUBLE") {
+			for(int i = 0 ; i < getQueryTable().size();i++) {
+				setResultadoSoma(getResultadoSoma()+Double.parseDouble(getQueryTable().get(i).get(coluna)));
+			}
 		}
-
+		else
+			System.out.println("Can't calculate this type of data");
 	}
 }	

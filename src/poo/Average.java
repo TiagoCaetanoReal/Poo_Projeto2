@@ -1,17 +1,18 @@
 package poo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Average {
 	String coluna;
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
-	int resultadoSoma;
+	double averageResult;
+	Map<String, String> dictionary = new HashMap<String, String>();
 	
-	Average(String coluna, ArrayList<HashMap <String , String>> querryTable){
+	Average(String coluna, ArrayList<HashMap <String , String>> querryTable, Map<String, String> dictionary){
 		this.coluna = coluna;
 		this.queryTable = querryTable;
-		sumValues();
+		this.dictionary = dictionary;
+		averageValue();
 	}
 	
 	String getColuna() { return this.coluna;}
@@ -20,15 +21,12 @@ public class Average {
 	ArrayList<HashMap <String , String>> getQueryTable() { return this.queryTable;}
 	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
 	
-	int getResultadoSoma() { return this.resultadoSoma;}
-	private void setResultadoSoma(int resultadoSoma) { this.resultadoSoma = resultadoSoma;}
+	double getAverageResult() { return this.averageResult;}
+	private void setAverageResult(double averageResult) { this.averageResult = averageResult;}
 	
-	void sumValues(){
+	void averageValue(){
+		Sum sum = new Sum(coluna, queryTable, dictionary);
+		setAverageResult(sum.getResultadoSoma()/getQueryTable().size());
 		
-		for(int i = 0 ; i < getQueryTable().size();i++) {
-			//System.out.println(Integer.parseInt(getQueryTable().get(i).get(coluna)));
-			setResultadoSoma(getResultadoSoma()+Integer.parseInt(getQueryTable().get(i).get(coluna)));
-		}
-
 	}
 }	

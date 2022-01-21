@@ -24,7 +24,7 @@ public class DistinctCount {
 	private void setContagemDistinta(int contagemDistinta) { this.contagemDistinta = contagemDistinta;}
 	
 	void distinctCount(){
-		Collection<String> tabela = new ArrayList<String>();
+		Collection<String> tabela = new ArrayList<String>(); 
 		Set<String> distinct = new HashSet<String>();
 		
 		for(int i = 0 ; i < getQueryTable().size();i++) {
@@ -37,3 +37,4 @@ public class DistinctCount {
 		setContagemDistinta(distinct.size());
 	}
 }	
+

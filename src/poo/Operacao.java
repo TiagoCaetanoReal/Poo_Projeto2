@@ -145,13 +145,14 @@ public class Operacao {
 		  	tabela = a.getQueryTable();
 			System.out.print(tabela.get(0));*/
 			
-		 	String[] array = {"IsActiveMember", "==", "1", "&&", "Gender", "==", "Female"};
+		 	String[] array = {"IsActiveMember", "==", "1", "||", "Gender", "==", "Female"};
+		 	String[] array2 = {"IsActiveMember", "==", "1"};
 			Filter f = new Filter(tabela, array);
 			setTabelaModificada(f.resultingTable);
-	
-			for(int i = 0 ; i < getTabelaModificada().size();i++) {
+			
+			/*for(int i = 0 ; i < getTabelaModificada().size();i++) {
 				System.out.println(getTabelaModificada().get(i));
-			}
+			}*/
 	 }
 }
 

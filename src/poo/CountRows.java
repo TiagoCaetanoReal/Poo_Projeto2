@@ -4,21 +4,16 @@ import java.util.*;
 
 public class CountRows {
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
-	int numbLines;
+	int numberLines;
 
 	CountRows(ArrayList<HashMap <String , String>> querryTable){
 		this.queryTable = querryTable;
-		numbRows();
+		setNumberLines(queryTable.size());
 	}
 
 	ArrayList<HashMap <String , String>> getQueryTable() { return this.queryTable;}
 	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
 	
-	int getNumbLines() { return this.numbLines;}
-	private void setNumbLines(int numbLines) { this.numbLines = numbLines;}
-	
-	void numbRows() {
-		//numbLines = queryTable.size();
-		setNumbLines(queryTable.size());
-	}
+	int getNumberLines() { return this.numberLines;}
+	private void setNumberLines(int numberLines) { this.numberLines = numberLines;}
 }

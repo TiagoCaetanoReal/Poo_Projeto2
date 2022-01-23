@@ -156,9 +156,11 @@ public class Operacao {
 		*/
 			/*for(int i = 0 ; i < getTabelaModificada().size();i++) {
 				System.out.println(getTabelaModificada().get(i));
-			}*/
-		
-		 	Calculate cal = new Calculate("DISTINCTCOUNT(Geography)", "ALL", tabela);
+			}*/		
+		 	
+		 
+		 	//Calculate cal = new Calculate("DISTINCTCOUNT(Geography)", "ALL", tabela);
+		 	Calculate cal = new Calculate("DISTINCTCOUNT(Geography)", "Filter(Age == 18 && IsActiveMember == 1)", tabela);
 		 	System.out.println(cal.getResultado());
 		 
 	 }

@@ -2,16 +2,23 @@ package poo;
 
 import java.util.*;
 
-public class Sum<T extends Number>{
+public class Sum{
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
 	Map<String, String> dictionary = new HashMap<String, String>();
 	double resultadoSoma;
 	String coluna;
 	
-	Sum(String coluna, ArrayList<HashMap <String , String>> querryTable, Map<String, String> dictionary){
+	Sum(String coluna, Filter filter, Map<String, String> dictionary){
+		this.queryTable = filter.getResultingTable();
+		this.dictionary = dictionary;
 		this.coluna = coluna;
+		sumValues();
+	}
+	
+	Sum(String coluna, ArrayList<HashMap <String , String>> querryTable, Map<String, String> dictionary){
 		this.queryTable = querryTable;
 		this.dictionary = dictionary;
+		this.coluna = coluna;
 		sumValues();
 	}
 	

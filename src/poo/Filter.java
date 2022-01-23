@@ -12,13 +12,11 @@ public class Filter implements Cloneable {
 		this.queryTable = querryTable;
 		this.expression = expression;
 		filtrar();
-			
-		for(int i = 0 ; i < resultingTable.size();i++)
-			System.out.println(resultingTable.get(i));
-		
 	}
 	
-	
+	/*
+	 * getters e setters
+	 */
 	ArrayList<HashMap <String , String>> getResultingTable() { return this.resultingTable;}
 	private void setResultingTable(ArrayList<HashMap <String , String>> resultingTable) { this.resultingTable=resultingTable;}
 	
@@ -28,7 +26,9 @@ public class Filter implements Cloneable {
 	String[] getExpression() { return this.expression;}
 	private void setExpression(String[] expression) { this.expression = expression;}
 	
-	
+	/*
+	 * metodo para determinar o numero de condições
+	 */
 	void filtrar(){
 		if(getExpression().length == 3){
 			conditions(getExpression()[1], 1);
@@ -38,7 +38,9 @@ public class Filter implements Cloneable {
 		}
 	}
 	
-	
+	/*
+	 * metodo para determinar a operação a realizar
+	 */
 	void conditions(String expression, int index){
 		switch(expression) {
 		case "==":
@@ -96,40 +98,54 @@ public class Filter implements Cloneable {
 				}
 			}
 		}
-		
-		
 	}
 	
+	/*
+	 * metodo para verificar se cada linha da tabela é igual ao valor indicado
+	 */
 	void equal(int index) {
 		for(int i = 0 ; i < getQueryTable().size();i++) 
 			if(getQueryTable().get(i).get(getExpression()[index-1]).equals(getExpression()[index+1]))
 				resultingTable.add(getQueryTable().get(i));
 	}
+	/*
+	 * metodo para verificar se cada linha da tabela é menor ao valor indicado
+	 */
 	void minor(int index){
 		for(int i = 0 ; i < getQueryTable().size();i++)
 			if(Double.parseDouble(getQueryTable().get(i).get(getExpression()[index-1])) < Double.parseDouble(getExpression()[index+1]))
 				resultingTable.add(getQueryTable().get(i));
 	}
+	/*
+	 * metodo para verificar se cada linha da tabela é maior ao valor indicado
+	 */
 	void bigger(int index){
 		for(int i = 0 ; i < getQueryTable().size();i++)
 			if(Double.parseDouble(getQueryTable().get(i).get(getExpression()[index-1])) > Double.parseDouble(getExpression()[index+1]))
 				resultingTable.add(getQueryTable().get(i));
 	}
+	/*
+	 * metodo para verificar se cada linha da tabela não é igual ao valor indicado
+	 */
 	void notEqual(int index){
 		for(int i = 0 ; i < getQueryTable().size();i++) 
 			if(!(getQueryTable().get(i).get(getExpression()[index-1]).equals(getExpression()[index+1])))
 				resultingTable.add(getQueryTable().get(i));
 	}
+	/*
+	 * metodo para verificar se cada linha da tabela é menor ou igual ao valor indicado
+	 */
 	void minorEqual(int index){
 		for(int i = 0 ; i < getQueryTable().size();i++)
 			if(Double.parseDouble(getQueryTable().get(i).get(getExpression()[index-1])) <= Double.parseDouble(getExpression()[index+1]))
 				resultingTable.add(getQueryTable().get(i));
 	}
+	/*
+	 * metodo para verificar se cada linha da tabela é maior ou igual ao valor indicado
+	 */
 	void biggerEqual(int index){
 		for(int i = 0 ; i < getQueryTable().size();i++)
 			if(Double.parseDouble(getQueryTable().get(i).get(getExpression()[index-1])) >= Double.parseDouble(getExpression()[index+1]))
 				resultingTable.add(getQueryTable().get(i));
 	}
-	
-	
 }

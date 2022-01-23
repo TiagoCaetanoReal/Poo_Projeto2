@@ -7,6 +7,13 @@ public class DistinctCount {
 	int contagemDistinta;
 	String coluna;
 	
+
+	DistinctCount(String coluna, Filter filter){
+		this.coluna = coluna;
+		this.queryTable = filter.getResultingTable();
+		distinctCount();
+	}
+	
 	DistinctCount(String coluna, ArrayList<HashMap <String , String>> querryTable){
 		this.queryTable = querryTable;
 		this.coluna = coluna;

@@ -127,30 +127,40 @@ public class Operacao {
 			//int d = a.getContagemDistinta();
 			//System.out.print(d);
 			
-			/*Sum a = new Sum(conteudoColuna[6],tabela, dataTypeDictionary);
+			/*Sum a = new Sum("Balance", tabela, dataTypeDictionary);
 			double d = a.getResultadoSoma();
 			System.out.println(String.format("%.1f", d));*/
 			
-		 	/*Average h = new Average(conteudoColuna[7],tabela, dataTypeDictionary);
+		 	/*Average h = new Average("Tenure", tabela, dataTypeDictionary);
 			int b = h.getAverageResult();
 			System.out.println(b);*/
 			
 			//CountRows a = new CountRows(tabela);
-			//int d = a.getNumbLines();
+			//int d = a.getNumberLines();
 			//System.out.print(d);
 		 
 		  	/*All a = new All(tabela);
 		  	tabela = a.getQueryTable();
 			System.out.print(tabela.get(0));*/
 			
-		 	String[] array = {"IsActiveMember", "==", "1", "&&", "Gender", "==", "Female"};
-		 	String[] array2 = {"IsActiveMember", "==", "1"};
-			Filter f = new Filter(tabela, array);
-			setTabelaModificada(f.resultingTable);
+		 /* exercicio 1
+		 	String[] array = {"Age", ">=", "18", "&&", "IsActiveMember", "==", "1"};
+		 	
+		 	CountRows r = new CountRows(new Filter(tabela, array));
+			int b = r.getNumberLines();
+			System.out.print(b);
+		 	
 			
+		 	Filter f = new Filter(tabela, array);
+			setTabelaModificada(f.resultingTable);
+		*/
 			/*for(int i = 0 ; i < getTabelaModificada().size();i++) {
 				System.out.println(getTabelaModificada().get(i));
 			}*/
+		
+		 	Calculate cal = new Calculate("DISTINCTCOUNT(Geography)", "ALL", tabela);
+		 	System.out.println(cal.getResultado());
+		 
 	 }
 }
 

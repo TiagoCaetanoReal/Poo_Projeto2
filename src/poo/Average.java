@@ -3,10 +3,17 @@ package poo;
 import java.util.*;
 
 public class Average {
-	String coluna;
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
-	double averageResult;
 	Map<String, String> dictionary = new HashMap<String, String>();
+	double averageResult;
+	String coluna;
+	
+	Average(String coluna, Filter filter, Map<String, String> dictionary){
+		this.coluna = coluna;
+		this.queryTable = filter.getResultingTable();
+		this.dictionary = dictionary;
+		averageValue();
+	}
 	
 	Average(String coluna, ArrayList<HashMap <String , String>> querryTable, Map<String, String> dictionary){
 		this.coluna = coluna;
@@ -25,8 +32,8 @@ public class Average {
 	private void setAverageResult(double averageResult) { this.averageResult = averageResult;}
 	
 	void averageValue(){
-		Sum sum = new Sum(coluna, queryTable, dictionary);
-		setAverageResult(sum.getResultadoSoma()/getQueryTable().size());
+		Sum sumValues = new Sum(coluna, queryTable, dictionary);
+		setAverageResult(sumValues.getResultadoSoma()/getQueryTable().size());
 		
 	}
 }	

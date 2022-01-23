@@ -6,7 +6,12 @@ public class CountRows {
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
 	int numberLines;
 
-	CountRows(ArrayList<HashMap <String , String>> querryTable){
+	CountRows(Filter filter){
+		this.queryTable = filter.getResultingTable();
+		setNumberLines(queryTable.size());
+	}
+	
+	CountRows(ArrayList<HashMap<String , String>> querryTable){
 		this.queryTable = querryTable;
 		setNumberLines(queryTable.size());
 	}

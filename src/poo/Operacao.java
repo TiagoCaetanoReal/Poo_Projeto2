@@ -92,8 +92,6 @@ public class Operacao {
 			        }
 		    	}
 	    	}
-			 
-			 //System.out.println(temp);
 			
 			if(tempDictionary.get("INT") > tempDictionary.get("DOUBLE") && tempDictionary.get("INT") > tempDictionary.get("STRING")) {		
 				int g = 0;
@@ -145,7 +143,7 @@ public class Operacao {
 		  	tabela = a.getQueryTable();
 			System.out.print(tabela.get(0));*/
 			
-		 	String[] array = {"IsActiveMember", "==", "1", "||", "Gender", "==", "Female"};
+		 	String[] array = {"IsActiveMember", "==", "1", "&&", "Gender", "==", "Female"};
 		 	String[] array2 = {"IsActiveMember", "==", "1"};
 			Filter f = new Filter(tabela, array);
 			setTabelaModificada(f.resultingTable);

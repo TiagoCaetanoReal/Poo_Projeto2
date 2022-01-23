@@ -3,15 +3,14 @@ package poo;
 import java.util.*;
 
 public class DistinctCount {
-	String coluna;
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
 	int contagemDistinta;
+	String coluna;
 	
 	DistinctCount(String coluna, ArrayList<HashMap <String , String>> querryTable){
-		this.coluna = coluna;
 		this.queryTable = querryTable;
+		this.coluna = coluna;
 		distinctCount();
-		//System.out.println(contagemDistinta);
 	}
 	
 	String getColuna() { return this.coluna;}

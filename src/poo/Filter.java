@@ -15,6 +15,7 @@ public class Filter implements Cloneable {
 			
 		for(int i = 0 ; i < resultingTable.size();i++)
 			System.out.println(resultingTable.get(i));
+		
 	}
 	
 	
@@ -76,43 +77,15 @@ public class Filter implements Cloneable {
 		resultingTable.clear();
 		
 		if(getExpression()[3].equals("||")) {
-			ArrayList<HashMap <String , String>> helpingTable3 = new ArrayList<>();
-			for(int i = 0; i < getQueryTable().size(); i++) {
-				if(!(helpingTable2.get(i).get("RowNumber").equals(helpingTable.get(i).get("RowNumber")))) {
-					resultingTable.add(helpingTable2.get(i));
-					resultingTable.add(helpingTable.get(i));
-					
-					distinctRows.add(helpingTable2.get(i).get("RowNumber"));
-					distinctRows.add(helpingTable.get(i).get("RowNumber"));
-					//for (String element : distinctRows) {
-						//if(!(resultingTable.get(i).get("RowNumber").equals(element))) {
-							
-							//System.out.println(helpingTable2.get(i).get("RowNumber")+" "+(helpingTable.get(i).get("RowNumber")));
-						//}
-					//}
-					//}//for(int g = 0; g < resultingTable.size(); g++) {
-					
-					//System.out.println(helpingTable2.get(i).get("RowNumber")+" "+(helpingTable.get(i).get("RowNumber")));
-					//System.out.println(resultingTable.get(i));
-				}
-				else if((helpingTable2.get(i).get("RowNumber").equals(helpingTable.get(i).get("RowNumber")))) {
-					//System.out.println(helpingTable2.get(i).get("RowNumber")+" "+(helpingTable.get(i).get("RowNumber")));
-					distinctRows.add(helpingTable.get(i).get("RowNumber"));
-					resultingTable.add(helpingTable2.get(i));
-				}
-			}
-			
-			for (String element : distinctRows) {
-				for(int i = 0; i < getQueryTable().size(); i++){
-					if(!(getResultingTable().get(i).containsValue(element))) {
-							//.get("RowNumber").equals(element))) {
-						//System.out.println(helpingTable2.get(i).get("RowNumber")+" "+(helpingTable.get(i).get("RowNumber")));
-						helpingTable3.add(getResultingTable().get(i));
-					}
-				}
-			}
-		}
+			for (HashMap<String, String> element : helpingTable)
+				if (!resultingTable.contains(element)) 
+					resultingTable.add(element);
 		
+			for (HashMap<String, String> element : helpingTable2)
+				if (!resultingTable.contains(element)) 
+					resultingTable.add(element);
+			
+		}
 		else if(getExpression()[3].equals("&&")) {
 			for(int i = 0; i < helpingTable2.size(); i++) {
 				for(int j = 0; j < helpingTable.size(); j++) {
@@ -123,7 +96,6 @@ public class Filter implements Cloneable {
 				}
 			}
 		}
-	
 		
 		
 	}

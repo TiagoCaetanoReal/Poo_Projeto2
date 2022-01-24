@@ -31,17 +31,17 @@ public class Filter implements Cloneable {
 	 */
 	void filtrar(){
 		if(getExpression().length == 3){
-			conditions(getExpression()[1], 1);
+			relational(getExpression()[1], 1);
 		}
 		else if(getExpression().length == 7){
-			andOr();
+			logical();
 		}
 	}
 	
 	/*
 	 * metodo para determinar a operação a realizar
 	 */
-	void conditions(String expression, int index){
+	void relational(String expression, int index){
 		switch(expression) {
 		case "==":
 			equal(index);
@@ -67,14 +67,14 @@ public class Filter implements Cloneable {
 	/*
 	 * metodo para realizar a união ou interseção das arrayList na arrayList resultingTable.
 	 */
-	void andOr() {
+	void logical() {
 		HashSet<String> distinctRows = new HashSet<>();
 		
-		conditions(getExpression()[1], 1);
+		relational(getExpression()[1], 1);
 		ArrayList<HashMap <String , String>>  helpingTable = (ArrayList<HashMap <String , String>>)getResultingTable().clone();
 		resultingTable.clear();
 
-		conditions(getExpression()[5], 5);
+		relational(getExpression()[5], 5);
 		ArrayList<HashMap <String , String>>  helpingTable2 = (ArrayList<HashMap <String , String>>)getResultingTable().clone();	
 		resultingTable.clear();
 		

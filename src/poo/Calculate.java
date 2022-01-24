@@ -66,30 +66,27 @@ public class Calculate {
 	}
 	
 	void determineAgregation() {
-		//antes -> DISTINCTCOUNT(Geography)
 		String[] expressionAgregation = getAgregation().split("\\(");
 		expressionAgregation[expressionAgregation.length-1] =  
 				expressionAgregation[expressionAgregation.length-1].substring (0, expressionAgregation[expressionAgregation.length-1].length() - 1);
-		//depois -> n[0] = DISTINCTCOUNT , n[1] = Geography
-		
-		DistinctCount distinctCount = null;
-		CountRows countRows = null;
-		Average average = null;
-		Sum sum = null;
 		
 		if(expressionAgregation[0].equalsIgnoreCase("Average")) {
+			Average average = null;
 			average = new Average(expressionAgregation[1], getQueryTable(), getDictionary());
 			setResultado(average.getAverageResult());
 		}	
 		else if(expressionAgregation[0].equalsIgnoreCase("DistinctCount")) {
+			DistinctCount distinctCount = null;
 			distinctCount = new DistinctCount(expressionAgregation[1], getQueryTable());
 			setResultado(distinctCount.getContagemDistinta());
 		}
 		else if(expressionAgregation[0].equalsIgnoreCase("CountRows")) {
+			CountRows countRows = null;
 			countRows = new CountRows(getQueryTable());
 			setResultado(countRows.getNumberLines());
 		}
 		else if(expressionAgregation[0].equalsIgnoreCase("Sum")) {
+			Sum sum = null;
 			sum = new Sum(expressionAgregation[1], getQueryTable(), getDictionary());
 			setResultado(sum.getResultadoSoma());
 		}

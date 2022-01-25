@@ -10,6 +10,6 @@ public class Main {
 		//DISTINCTCOUNT(FILTER(Customer_Data, Customer_Data[Age]>=18 && Customer_Data[IsActiveMember]==1))
 		//CALCULATE(DISTINCTCOUNT(Customer_Data[Geography]), ALL(Customer_Data))
 		
-		Operacao novaQuerry = new Operacao("Customer_Data.csv", "SUM(Customer_Data[Balance])");
+		Operacao novaQuerry = new Operacao("Customer_Data.csv", "CALCULATE(DISTINCTCOUNT(Customer_Data[Geography]), FILTER(Customer_Data, Customer_Data[Age]>=18 && Customer_Data[IsActiveMember]==1))");
 	}
 }

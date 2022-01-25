@@ -113,11 +113,13 @@ public class Operacao {
 	}
 	 
 	void queryFilter(){
-		 
-		 
-		 
-		 
-		 
+		//SUM(Customer_Data[Balance])
+		//AVERAGE(Customer_Data[Tenure])
+		//DISTINCTCOUNT(FILTER(Customer_Data, Customer_Data[Age]>=18 && Customer_Data[IsActiveMember]==1))
+		//CALCULATE(DISTINCTCOUNT(Customer_Data[Geography]), ALL(Customer_Data))
+		
+		InputFilter i= new InputFilter(getQuery());
+		
 		 
 		//DistinctCount a = new DistinctCount(conteudoColuna[4],tabela);
 		//int d = a.getContagemDistinta();

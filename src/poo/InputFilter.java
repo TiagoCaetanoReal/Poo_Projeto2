@@ -31,7 +31,6 @@ public class InputFilter {
 				tempArray.add(array1[0]);
 				caseFilter(tempArray, array1, array1.length-1);
 			}
-			
 			else {
 				betweenBracket = array1[1].substring(array1[1].indexOf("[") + 1, array1[1].indexOf("]"));
 				array1[1] = betweenBracket;

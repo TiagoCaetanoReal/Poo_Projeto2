@@ -17,6 +17,8 @@ public class Calculate {
 		this.filtration = filtration;
 		determineFiltration();
 		determineAgregation();
+		
+		System.out.println(resultado);
 	}
 	
 	Calculate(String agregation, String filtration, ArrayList<HashMap <String , String>> queryTable, Map<String, String> dictionary){

@@ -8,25 +8,26 @@ import java.util.*;
  * @version JDK 11.0.13
  */
 public class All {
-	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
-	
+	ArrayList<HashMap<String, String>> queryTable = new ArrayList<>();
+
 	/*
 	 * contrutor da classe
+	 * 
 	 * @param queryTable arrayList com toda a tabela a ser usada, nest operaçao
 	 */
-	All(ArrayList<HashMap <String , String>> querryTable){
+	All(ArrayList<HashMap<String, String>> querryTable) {
 		this.queryTable = querryTable;
-		allValues();
 	}
-	
+
 	/*
 	 * getters e setters
 	 */
-	ArrayList<HashMap <String , String>> getQueryTable() { return this.queryTable;}
-	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
-	
-	
-	void allValues() {
-		getQueryTable();
+	ArrayList<HashMap<String, String>> getQueryTable() {
+		return this.queryTable;
 	}
+
+	private void setQueryTable(ArrayList<HashMap<String, String>> queryTable) {
+		this.queryTable = queryTable;
+	}
+
 }

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * @author Tiago Caetano, ISMAT
+ * @author Francisco Vicente, ISMAT
+ * @version JDK 11.0.13
+ */
 public class Calculate {
 	ArrayList<HashMap <String , String>> queryTable = new ArrayList<>();
 	Map<String, String> dictionary = new HashMap<String, String>();
@@ -11,16 +16,27 @@ public class Calculate {
 	String agregation;
 	double resultado;
 	
+	/*
+	 * contrutor primario da classe, no qual não é necessario o uso do dicionario
+	 * @param agregation string que contem o operador de agregacao a ser usado 
+	 * @param filtration string que contem o operador de filtragem a ser usado 
+	 * @param queryTable arrayList com toda a tabela a ser usada
+	 */
 	Calculate(String agregation, String filtration, ArrayList<HashMap <String , String>> queryTable){
 		this.queryTable = queryTable;
 		this.agregation = agregation;
 		this.filtration = filtration;
 		determineFiltration();
 		determineAgregation();
-		
-		System.out.println(resultado);
 	}
 	
+	/*
+	 * contrutor secundario da classe, para o caso de ser necessario o uso do dicionario
+	 * @param agregation string que contem o operador de agregacao a ser usado 
+	 * @param filtration string que contem o operador de filtragem a ser usado 
+	 * @param queryTable arrayList com toda a tabela a ser usada
+	 * @param dictionary map com a indicaçao do tipo primitivo de cada coluna
+	 */
 	Calculate(String agregation, String filtration, ArrayList<HashMap <String , String>> queryTable, Map<String, String> dictionary){
 		this.queryTable = queryTable;
 		this.dictionary = dictionary;
@@ -30,6 +46,9 @@ public class Calculate {
 		determineAgregation();
 	}
 	
+	/*
+	 * getter e setters
+	 */
 	ArrayList<HashMap <String , String>> getQueryTable() { return this.queryTable;}
 	private void setQueryTable(ArrayList<HashMap <String , String>> queryTable) { this.queryTable=queryTable;}
 
@@ -39,13 +58,15 @@ public class Calculate {
 	String getAgregation() {return this.agregation;}
 	void setAgregation(String agregation) {this.agregation = agregation;}
 	
-
 	String getFiltration() {return this.filtration;}
 	void setFiltration(String filtration) {this.filtration = filtration;}
 
 	double getResultado() {return this.resultado;}
 	void setResultado(double resultado) {this.resultado = resultado;}
 	
+	/*
+	 * metodo para identificar qual o operador de filtragem que será usado, e de seguida instância-lo
+	 */
 	void determineFiltration() {
 		String[] expressionFiltration = getFiltration().split("\\(");
 		
@@ -66,7 +87,9 @@ public class Calculate {
 			setQueryTable(filter.getResultingTable());
 		}
 	}
-	
+	/*
+	 * metodo para identificar qual o operador de agregaçao que será usado, e de seguida instância-lo
+	 */
 	void determineAgregation() {
 		String[] expressionAgregation = getAgregation().split("\\(");
 		expressionAgregation[expressionAgregation.length-1] =  
@@ -93,5 +116,4 @@ public class Calculate {
 			setResultado(sum.getResultadoSoma());
 		}
 	}
-
 }

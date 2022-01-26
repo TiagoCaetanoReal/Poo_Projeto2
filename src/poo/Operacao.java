@@ -3,6 +3,11 @@ package poo;
 import java.io.*;
 import java.util.*;
 
+/*
+ * @author Tiago Caetano, ISMAT
+ * @author Francisco Vicente, ISMAT
+ * @version JDK 11.0.13
+ */
 public class Operacao {
 	ArrayList<HashMap <String , String>> tabelaModificada = new ArrayList<>();
 	Map<String, String> dataTypeDictionary = new HashMap<String, String>();
@@ -11,6 +16,11 @@ public class Operacao {
 	String nomeFicheiro;
 	String query;
 	
+	/*
+	 * contrutor da classe
+	 * @param nomeFicheriro nome do ficheiro csv com o qual se irá trabalhar
+	 * @param query pergunta fornecida pelo user
+	 */
 	Operacao(String nomeFicheiro, String query){
 		this.nomeFicheiro = nomeFicheiro;
 		this.query = query;
@@ -18,7 +28,9 @@ public class Operacao {
 		variableType();
 		operation();
 	}
-	
+	/*
+	 * getters e setters
+	 */
 	String getQuery() { return this.query;}
 	private void setQuery(String query) { this.query=query;}
 	
@@ -37,7 +49,11 @@ public class Operacao {
 	Map <String , String> getDataTypeDictionary() { return this.dataTypeDictionary;}
 	private void setDataTypeDictionary(Map <String , String> dataTypeDictionary) { this.dataTypeDictionary=dataTypeDictionary;}
 	
-	
+	/*
+	 * metodo que tem como operaçao primaria retirar toda a informacao do csv e introduzila num arrayList de hashmaps
+	 * @throws FileNotFoundException caso não consiga abrir o ficheiro lança esta exceção
+	 * @throws IOException caso o objeto myReader tenha algum erro
+	 */
 	void lerFicheiro(){
 		try{
 			FileReader ficheiro = new FileReader(System.getProperty("user.dir")+"/src/" + nomeFicheiro);
@@ -63,6 +79,9 @@ public class Operacao {
 		
 	}
 	
+	/*
+	 * metodo onde será criado o dicionario para determinar o tipo promitivo de cada coluna
+	 */
 	void variableType() { 
 		Map <String , Integer> tempDictionary = new HashMap<>();
 		
@@ -115,14 +134,12 @@ public class Operacao {
 			}
 	    }
 	}
-	 
 	
+	/*
+	 * metodo onde a query é filtrada pela class InputFilter, sendo depois usada InstantiaClass, em conjunto com a tabela e o dicionario
+	 */
 	void operation(){
 		InputFilter input = new InputFilter(getQuery());
-		
-		//for(String g: input.getFilteredInput())
-			//System.out.println(g);
-		
 		InstantiateClass newClass = new InstantiateClass(getTable(), input.getFilteredInput(), getDataTypeDictionary());
 	}
 }
